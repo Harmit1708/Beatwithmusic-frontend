@@ -1,0 +1,79 @@
+.font-link{
+    font-family: 'Dancing Script', cursive;
+}
+
+.song-slider{
+    width: 400px;
+    position: relative;
+}
+
+
+
+.seek-bar{
+    -webkit-appearance: none;
+    width: 100%;
+    margin: auto;
+    height: 10px;
+    border-radius: 10px;
+    background: #7fc8a9;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.seek-bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 100px;
+    height: 20px;
+    box-shadow: -400px 0 0 400px #d5eebb;
+}
+
+
+.song-duration{
+    position: absolute;
+    right: 0;
+}
+
+ 
+
+ .audio-player-progress{
+     width: 100%;
+     margin: 20px 0;
+ }
+
+ .audio-player-progress input[type=range]{
+     width: 100%;
+     -webkit-appearance: none;
+     height: 2px;
+     border-radius: 2px;
+     background-color: linear-gradient(to right,#83c11f 50%,grey 50%);
+ }
+
+.disk{
+    position: relative;
+    display: block;
+    margin: 40px auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-size: cover;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+
+.disk::before{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #5f7a61;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .main{
+        margin: auto;
+    }
+  }
