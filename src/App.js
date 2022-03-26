@@ -5,7 +5,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Home from "../src/Components/Home";
-
+import Login from './Components/login'
+import Signup from './Components/signup'
+import Header from './Components/Header'
 // Api Url
 export const url = "https://beatwithmusic.herokuapp.com";
 
@@ -28,6 +30,17 @@ function App() {
   let [currentDuration,setCurrentDuration] = useState()
 
   let [play,setPlay] = useState(false)
+
+  let [aList,setAlist] = useState(false)
+
+
+  let [playing, setPlaying] = useState(false);
+
+
+  let [currentPlay,setCurrentPlay] = useState([]);
+
+  let [currentPlaying,setCurrentPlaying] = useState(false)
+
   
   useEffect(() =>{
     getData();
@@ -42,7 +55,10 @@ function App() {
     } else {
       console.log(res.data.message);
     }
-  };
+  }
+  
+
+
 
   
   return (
@@ -64,11 +80,21 @@ function App() {
           setMusic,
           currentDuration,
           setCurrentDuration,
-
+          aList,
+          setAlist,
+          playing,
+          setPlaying,
+          currentPlay,
+          setCurrentPlay,
+          currentPlaying,
+          setCurrentPlaying
         }}
       >
         <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </musicContext.Provider>
     </BrowserRouter>

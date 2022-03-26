@@ -1,25 +1,23 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { musicContext } from "../App";
 
 function Playpause() {
   let context = useContext(musicContext);
 
-  let [playing, setPlaying] = useState(false);
-
   const play = () => {
-    setPlaying(true);
-    context.music.play();
-    context.setAnother(true)
-  };
+    context.setPlaying(true);
+    context.setCurrentPlaying(true)
+      context.music.play();
+      context.setAnother(true)
+    };
 
   const pause = () => {
-    setPlaying(false);
-    context.music.pause();
-    context.setAnother(false)
-
-  };
-  
+    context.setPlaying(false);
+    context.setCurrentPlaying(true)
+      context.music.pause();
+      context.setAnother(false)
+  }  
   return (
     <button
       className="btn text-light"
@@ -28,9 +26,9 @@ function Playpause() {
         backgroundColor: "transparent",
         boxShadow: "none",
       }}
-      onClick={playing ? pause : play}
+      onClick={context.playing ? pause : play}
     >
-      {playing ? (
+      {context.playing ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="64"

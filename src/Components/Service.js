@@ -3,33 +3,34 @@ import { musicContext } from "../App";
 import Forword from "../Components/Forword";
 import Backword from "../Components/Backword";
 import Playpause from "./Playpause";
-
+import RandomPlay from './RandomPlay'
 function Service() {
 
   let context = useContext(musicContext);
     if (context && context.data && context.data.length) {
-        var store = context.data.findIndex((c) => c.name === context.data[context.snext].name);
-        var data = context.data[store]; 
+        var data = context.data[context.snext]; 
         var duration = data?.duration 
       }
       
       useEffect(()=>{
-        context.setCurrentDuration(context.minutes + ":" + context.seconds);
-          if(context.another === true){
-            const intervalID = setInterval(()=>{
-              context.setSeconds(parseInt(context.seconds) + 1)
-              if(parseInt(context.seconds) === 60){
-                context.setMinutes(parseInt(context.minutes) + 1);
-                context.setSeconds(0)
-              }
-              else if(context.currentDuration === duration){
-                context.setMinutes(0)
-                context.setSeconds(0)
-                context.setAnother(false)  
-              }
-              },1000)
-            return () => clearTimeout(intervalID)
-          }
+        if(context.currentPlaying === true){
+          context.setCurrentDuration(context.minutes + ":" + context.seconds);
+            if(context.another === true){
+              const intervalID = setInterval(()=>{
+                context.setSeconds(parseInt(context.seconds) + 1)
+                if(parseInt(context.seconds) === 60){
+                  context.setMinutes(parseInt(context.minutes) + 1);
+                  context.setSeconds(0)
+                }
+                else if(context.currentDuration === duration){
+                  context.setMinutes(0)
+                  context.setSeconds(0)
+                  context.setAnother(false)  
+                }
+                },1000)
+              return () => clearTimeout(intervalID)
+            }
+        }
     })
 
     
@@ -61,6 +62,9 @@ function Service() {
             <Backword />
             <Playpause />
             <Forword />
+          </div>
+          <div className="mt-3 text-center">
+            <RandomPlay/>
           </div>
         </div>  
       </div>}
